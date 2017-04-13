@@ -18,11 +18,8 @@ if __name__ == "__main__":
 	# ndf = ndf.withColumn('CMPLNT_FR_DT', ndf['CMPLNT_FR_DT'].cast(DateType()))
 	# timediff=(ndf['CMPLNT_TO_DT']-ndf['CMPLNT_FR_DT'])
 	# ndf = ndf.withColumn("duration", timediff)
-<<<<<<< HEAD
 	v0   = lines.map(lambda x: x[0])
 	output0 = v0.map(lambda x :('NaN'+' INT ID NULL') if pd.isnull(x[0]) else (str(x[0])+" INT ID VALID"))
-=======
->>>>>>> e987aa41a5ed7b057be38d11d1de34a31acd8cad
 	v135 = lines.map(lambda x: (x[1],x[3],x[5]))
 	output1 = v135.map(lambda x :("NaN"+" DATETIME date NULL") if len(x[0])==0 else (str(x[0])+" DATETIME date VALID") if (len(x[1])==0 and int(x[0][-4:])>=1900 and (datetime.strptime(x[2], '%m/%d/%Y')-datetime.strptime(x[0], '%m/%d/%Y')).total_seconds()>=0) else (str(x[0])+" DATETIME date VALID") if (int(x[0][-4:])>=1900 and (datetime.strptime(x[1], '%m/%d/%Y')-datetime.strptime(x[0], '%m/%d/%Y')).total_seconds()>=0 and (datetime.strptime(x[2], '%m/%d/%Y')-datetime.strptime(x[0], '%m/%d/%Y')).total_seconds()>=0) else (str(x[0])+" DATETIME date INVALID"))
 	output3 = v135.map(lambda x :("NaN"+" DATETIME date NULL") if len(x[1])==0 else (str(x[0])+" DATETIME date VALID") if (len(x[0])==0 and int(x[1][-4:])< 2020)else (str(x[1])+" DATETIME date VALID") if (int(x[1][-4:])< 2020 and (datetime.strptime(x[1], '%m/%d/%Y')-datetime.strptime(x[0], '%m/%d/%Y')).total_seconds()>=0) else (str(x[1])+" DATETIME date INVALID"))
