@@ -1,5 +1,6 @@
 from csv import reader 
 import sys
+import pandas as pd
 from datetime import datetime
 from pyspark import SparkContext
 
@@ -17,6 +18,11 @@ if __name__ == "__main__":
 	# ndf = ndf.withColumn('CMPLNT_FR_DT', ndf['CMPLNT_FR_DT'].cast(DateType()))
 	# timediff=(ndf['CMPLNT_TO_DT']-ndf['CMPLNT_FR_DT'])
 	# ndf = ndf.withColumn("duration", timediff)
+<<<<<<< HEAD
+	v0   = lines.map(lambda x: x[0])
+	output0 = v0.map(lambda x :('NaN'+' INT ID NULL') if pd.isnull(x[0]) else (str(x[0])+" INT ID VALID"))
+=======
+>>>>>>> e987aa41a5ed7b057be38d11d1de34a31acd8cad
 	v135 = lines.map(lambda x: (x[1],x[3],x[5]))
 	output1 = v135.map(lambda x :("NaN"+" DATETIME date NULL") if len(x[0])==0 else (str(x[0])+" DATETIME date VALID") if (len(x[1])==0 and int(x[0][-4:])>=1900 and (datetime.strptime(x[2], '%m/%d/%Y')-datetime.strptime(x[0], '%m/%d/%Y')).total_seconds()>=0) else (str(x[0])+" DATETIME date VALID") if (int(x[0][-4:])>=1900 and (datetime.strptime(x[1], '%m/%d/%Y')-datetime.strptime(x[0], '%m/%d/%Y')).total_seconds()>=0 and (datetime.strptime(x[2], '%m/%d/%Y')-datetime.strptime(x[0], '%m/%d/%Y')).total_seconds()>=0) else (str(x[0])+" DATETIME date INVALID"))
 	output3 = v135.map(lambda x :("NaN"+" DATETIME date NULL") if len(x[1])==0 else (str(x[0])+" DATETIME date VALID") if (len(x[0])==0 and int(x[1][-4:])< 2020)else (str(x[1])+" DATETIME date VALID") if (int(x[1][-4:])< 2020 and (datetime.strptime(x[1], '%m/%d/%Y')-datetime.strptime(x[0], '%m/%d/%Y')).total_seconds()>=0) else (str(x[1])+" DATETIME date INVALID"))
@@ -37,5 +43,15 @@ if __name__ == "__main__":
 	output8 = v8.map(lambda x : str(x)+" INT category VALID") 
 	v9 = lines.map(lambda x: x[9])
 	output9 = v9.map(lambda x : (str(x)+" TEXT description VALID") if len(x)>0 else ("NaN"+" TEXT description NULL"))
-	output = output1.union(output2).union(output3).union(output4).union(output5).union(output6).union(output7).union(output8).union(output9)
+	v10 =  lines.map(lambda x: x[10])
+	output10 = v10.map(lambda x : (str(x)+" TEXT indicator VALID") if len(x)>0 else ("NaN"+" TEXT indicator NULL"))
+	v11 =  lines.map(lambda x: x[11])
+	output11 = v11.map(lambda x : (str(x)+" TEXT level VALID") if len(x)>0 else ("NaN"+" TEXT level NULL"))
+	v12 =  lines.map(lambda x: x[12])
+	output12 = v12.map(lambda x : (str(x)+" TEXT discription VALID") if len(x)>0 else ("NaN"+" TEXT discription NULL"))
+	v15 = lines.map(lambda x: x[15])
+	output15 = v15.map(lambda x : (str(x)+" TEXT location discription VALID") if x.lower() in ['inside', 'opposite of', 'front of', 'rear of'] else ("NaN"+" TEXT location discription NULL"))
+	v16 = lines.map(lambda x: x[16])
+	output16 = v16.map(lambda x : (str(x)+" TEXT permises discription VALID") if len(x)>0 else ("NaN"+" TEXT permises discription NULL"))
+	output = output0.union(output1).union(output2).union(output3).union(output4).union(output5).union(output6).union(output7).union(output8).union(output9).union(output10).union(output11).union(output12).union(output15).union(output16)
 	output.saveAsTextFile("test.out")
