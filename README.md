@@ -26,5 +26,5 @@ One can use our script to conduct the data clenaing procedure:
 ```bash
 spark-submit data_clean.py [PATH_TO_THE_DATASET]
 ```
-This will save the cleaned data on HDFS.
+This will save the cleaned data on HDFS as cleaned_data.out.
 
