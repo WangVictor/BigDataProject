@@ -16,9 +16,13 @@ export SPARK_YARN_USER_ENV=PYTHONHASHSEED=0
 ```
 The dataset should be uploaded to the hdfs.
 ### 2. Generating labels:
-To help us with summarizing the data quality, we can run the following command to automatically generate labels:
+To help us with summarizing the data quality, we can run the following command to automatically generate labels for each column with column index i(beginning from 0):
 ```bash
-spark-submit raw_data_label.py [PATH_TO_THE_DATASET]
+spark-submit coli.py [PATH_TO_THE_DATASET]
+```
+For example, one can generate labels for the first column by running:
+```bash
+spark-submit col0.py [PATH_TO_THE_DATASET]
 ```
 This will generate test.out file as output on HDFS.
 ### 3. Cleaning the data:
