@@ -12,9 +12,7 @@ if __name__ == "__main__":
     header = lines.first()
     lines = lines.filter(lambda line: line != header)
     
-    v17 = lines.map(lambda x: x[17])
-    output17 = v17.map(lambda x : (str(x)+" TEXT description VALID") if len(x)>0 else ("NaN"+" TEXT description NULL"))
-    output17.saveAsTextFile("test17.out")
-    
-    
+    v23 = lines.map(lambda x: x[23])
+    output23 = v23.map(lambda x : (str(x)+" FLOAT Coordinate Pair VALID") if len(x)>0 else ("NaN"+" FLOAT Coordinate Pair NULL"))
 
+    output23.saveAsTextFile("test23.out")
