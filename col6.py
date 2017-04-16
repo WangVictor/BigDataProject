@@ -11,4 +11,4 @@ if __name__ == "__main__":
     lines = lines.filter(lambda line: line != header)
     v6 = lines.map(lambda x: x[6])
     output6 = v6.map(lambda x : str(x)+" INT category VALID") 
-    otuput6.saveAsTextFile("test6.out")
+    output6.saveAsTextFile("test6.out")
