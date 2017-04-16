@@ -12,9 +12,7 @@ if __name__ == "__main__":
     header = lines.first()
     lines = lines.filter(lambda line: line != header)
     
-    v17 = lines.map(lambda x: x[17])
-    output17 = v17.map(lambda x : (str(x)+" TEXT description VALID") if len(x)>0 else ("NaN"+" TEXT description NULL"))
-    output17.saveAsTextFile("test17.out")
+    v_location = lines.map(lambda x: (x[19],x[20],x[21],x[22]))
+    output22 = v_location.map(lambda x : ("NaN"+" FLOAT Longitude NULL") if len(x[3])==0 else (str(x[3])+" FLOAT Longitude INVALID") if (len(x[3])>0 and (len(x[0])==0 or len(x[1])==0 or len(x[2])==0)) else (str(x[3])+" FLOAT Longitude VALID"))
     
-    
-
+    output22.saveAsTextFile("test22.out")
