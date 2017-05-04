@@ -3,6 +3,9 @@ import sys
 from datetime import datetime
 from pyspark import SparkContext
 
+def toCSVLine(data):
+  return ','.join(str(d) for d in data)
+
 if __name__ == "__main__":
 	sc = SparkContext()
 	lines = sc.textFile(sys.argv[1], 1) 
@@ -23,4 +26,5 @@ if __name__ == "__main__":
 	m4 = m3.map(lambda x: x[0:7]+["NYS LAWS-UNCLASSIFIED VIOLATION"]+x[8:] if x[6]=='677' else x)
 	m5 = m4.map(lambda x: x[0:7]+["ENDAN WELFARE INCOMP"]+x[8:] if x[6]=='345' else x)
 	m6 = m5.map(lambda x: x[0:7]+["OTHER OFFENSES RELATED TO THEF"]+x[8:] if x[6]=='343' else x)
-	m6.saveAsTextFile("cleaned_data.out")
+	lines = m6.map(toCSVLine)
+	lines.saveAsTextFile("cleaned_data.csv")
