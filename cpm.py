@@ -64,7 +64,6 @@ crime_df = crime_df.where(F.length(col("FR_HR")) >= 14)
 func =  udf (lambda x: datetime.strptime(x, '%m/%d/%Y %H:%M:%S'), TimestampType())
 
 crime_df = crime_df.withColumn('FR_HR', func(col('FR_HR')))
-
 crime_df.show(10)
 # crime_df.withColumn("FR_HR", F.unix_timestamp("FR_HR")).agg(
 #   F.from_unixtime(min("FR_HR")).alias("min_ts"), 
