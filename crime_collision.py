@@ -167,6 +167,22 @@ cri_eve_pd = cri_eve_grp.toPandas()
 merge_data = col_mor_pd.merge(col_eve_pd,left_on=['LATITUDE','LONGITUDE'],right_on=['LATITUDE','LONGITUDE']).merge(
 	cri_mor_pd,left_on=['LATITUDE','LONGITUDE'],right_on=['LATITUDE','LONGITUDE']).merge(
 	cri_eve_pd,left_on=['LATITUDE','LONGITUDE'],right_on=['LATITUDE','LONGITUDE'])
+merge_data.columns=['LATITUDE','LONGITUDE','col_mor','col_eve','cri_mor','cri_eve']
+merge_data.col_mor.corr(merge_data.cri_mor)
+merge_data.col_eve.corr(merge_data.cri_eve)
+plt.scatter(merge_data.cri_mor,merge_data.col_mor)
+plt.title('Scatter Plot of 2014-15 NYC Crime and Collision 8-11 am By Location')
+plt.xlabel('Crime')
+plt.ylabel('Traffic Collision')
+plt.savefig('morloccorr.png') 
+plt.close()
+
+plt.scatter(merge_data.cri_eve,merge_data.col_eve)
+plt.title('Scatter Plot of 2014-15 NYC Crime and Collision 5-8 pm By Location')
+plt.xlabel('Crime')
+plt.ylabel('Traffic Collision')
+plt.savefig('eveloccorr.png') 
+plt.close()
 
 
 
