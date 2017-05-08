@@ -32,3 +32,13 @@ spark-submit data_clean.py [PATH_TO_THE_DATASET]
 ```
 This will save the cleaned data on HDFS as cleaned_data.out.
 
+### 4. Conditional Probability Model:
+The analysis result based on conditional probability model can be reproduced by running:
+```bash
+spark-submit cpm.py
+```
+### 5. Correlation hypothesis with NYC traffic collision:
+The analysis result based on finding correlation between crime and traffic collision can be reproduced by running:
+```bash
+spark-submit crime_collision.py
+```
