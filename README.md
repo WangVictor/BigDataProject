@@ -42,3 +42,7 @@ The analysis result based on finding correlation between crime and traffic colli
 ```bash
 spark-submit crime_collision.py
 ```
+### 6. To generate interactive map visualization of traffic collision and crime data, run:
+```bash
+python interactive_map.py
+```
