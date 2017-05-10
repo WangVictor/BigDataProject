@@ -46,3 +46,7 @@ spark-submit crime_collision.py
 ```bash
 python interactive_map.py
 ```
+### 7. To see the relation between weather and crimes, run:
+```bash
+python weather_crime_corr.py
+```
