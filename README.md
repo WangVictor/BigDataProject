@@ -2,7 +2,7 @@
 This repo is for our Big Data Course Project.
 Goals: Explore NYC Incidents Data set
 
-#Team Member#: Peimeng Sui (ps3336), Sheng Liu (sl5924), Xiaoyu Wang (xw1435)
+**Team Member**: Peimeng Sui (ps3336), Sheng Liu (sl5924), Xiaoyu Wang (xw1435)
 
 This dataset, available on NYC Open Data website, includes all valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) from 2006 to the end of last year (2015).
 
